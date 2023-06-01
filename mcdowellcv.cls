@@ -22,7 +22,7 @@
 \ProvidesClass{mcdowellcv}[2015/12/15 v1.1.0 McDowell CV class]
 
 % Set up the fonts according to options
-\def\mainfontsize{10pt}
+\def\mainfontsize{9pt}
 \def\mainfontface{Times New Roman}
 
 \DeclareOption{calibri}{%
@@ -35,7 +35,7 @@
 \LoadClass[letterpaper,\mainfontsize]{article} 
 
 % Set document margins
-\usepackage[left=0.4in,top=0.5in,right=0.4in,bottom=0.5in]{geometry} 
+\usepackage[left=0.1in,top=0.1in,right=0.1in,bottom=0.1in]{geometry} 
 
 
 % Set font face
@@ -68,6 +68,9 @@ Ligatures={TeX, NoCommon, NoDiscretionary}, BoldItalicFont=CALIBRIZ.TTF,
 % To customize lists
 \usepackage{enumitem}
 
+% hyperlinks
+\usepackage{hyperref}
+
 
 % Remove left margin from lists, suppress vertical item separation and set top 
 % separation to a negative value to suppress a single parskip before lists
@@ -85,8 +88,8 @@ Ligatures={TeX, NoCommon, NoDiscretionary}, BoldItalicFont=CALIBRIZ.TTF,
 %--------------------------------------------------------------------------------
 %                                    Constants                                  -
 %--------------------------------------------------------------------------------
-\def\afterheaderspace{3pt}
-\def\beforesectionheaderspace{4.75pt}
+\def\afterheaderspace{1pt}
+\def\beforesectionheaderspace{1pt}
 \def\sectionheadermargin{6pt}
 \def\aftersectionheaderspace{-4pt}
 \def\sectionheaderhrlueheight{0.5pt}
@@ -94,7 +97,7 @@ Ligatures={TeX, NoCommon, NoDiscretionary}, BoldItalicFont=CALIBRIZ.TTF,
 \def\afterdoublelinesubsectionheaderspace{-10pt}
 \def\aftermultilinesubsectionheaderspace{-6pt}
 \def\afteremptysubsectionheaderspace{3pt}
-\def\subsectionmargin{9pt}
+\def\subsectionmargin{5pt}
 \def\aftersubsectionspace{4pt}
 
 %--------------------------------------------------------------------------------
@@ -110,17 +113,12 @@ Ligatures={TeX, NoCommon, NoDiscretionary}, BoldItalicFont=CALIBRIZ.TTF,
 \newcommand\printaddress{
 	\small{\@address}
 }
-
 % Webpage
 \makeatletter
-
-\newcommand\webpage[1]{\def\@webpage{#1}}
+\newcommand\webpage[2][]{\def\@webpage{#2}\def\@webpageurl{#1}}
 \address{}
 
-\newcommand\printwebpage{
-	\small{\@webpage}
-}
-
+\newcommand\printwebpage{\small{\href{\@webpageurl}{\@webpage}}}
 \makeatother
 
 % Name
@@ -137,26 +135,22 @@ Ligatures={TeX, NoCommon, NoDiscretionary}, BoldItalicFont=CALIBRIZ.TTF,
 
 % Contacts
 \makeatletter
-
-\newcommand\contacts[1]{\def\@contacts{#1}}
-\contacts{}
+\newcommand\contacts[3]{\def\@phone{#1}\def\@linkedin{#2}\def\@email{#3}}
+\contacts{}{}{}
 
 \newcommand\printcontacts{
-	\small{\@contacts}
+	\small{\href{tel:\@phone}{\@phone} \linebreak \href{\@linkedin}{LinkedIn Profile} \linebreak \href{mailto:\@email}{\nolinkurl{\@email}}}
 }
-
 \makeatother
 
-% Github
+% GitHub
 \makeatletter
-
 \newcommand\github[1]{\def\@github{#1}}
-\contacts{}
+\github{}
 
 \newcommand\printgithub{
-	\small{\@github}
+	\small{\href{\@github}{GitHub Profile}}
 }
-
 \makeatother
 
 \makeatletter
