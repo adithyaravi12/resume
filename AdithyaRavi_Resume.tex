@@ -26,13 +26,21 @@
 % For mathematical symbols
 \usepackage{amsmath}
 
+% hyperlinks
+\usepackage{hyperref}
+
 
 % Set applicant's personal data for header
 \name{Adithya Ravi}
-\address{102, Calhoun Street, Apt 221 \linebreak Clemson, SC 29631}
-\webpage{https://adithyaravi1203.wixsite.com/adithyaportfolio}
-\contacts{(864) 207-2541 \linebreak linkedin.com/in/adithyaravi12/ \linebreak adithya.ravi1203@gmail.com}
-\github{github.com/adithyaravi12}
+\address{102, Calhoun Street, Apt 221 \linebreak Clemson, SC 29631 \linebreak}
+\webpage[https://adithyaravi1203.wixsite.com/adithyaportfolio]{Portfolio}
+% \webpage{adithyaravi1203.wixsite.com/adithyaportfolio}
+
+\contacts{(864) 207-2541}{https://www.linkedin.com/in/adithyaravi12/}{adithyaravi0312@gmail.com}
+% \contacts{(864) 207-2541 \linebreak linkedin.com/in/adithyaravi12/ \linebreak adithya.ravi1203@gmail.com}
+
+\github{https://github.com/adithyaravi12}
+% \github{github.com/adithyaravi12}
 
 \begin{document}
 
@@ -40,6 +48,7 @@
 	\makeheader
 	
 	% Print the content
+
 
 \begin{cvsection}{Education}
 		\begin{cvsubsection}{Clemson University, Clemson, SC}{}{Jan 2022 -- Dec 2023 (Expected)}
@@ -93,23 +102,25 @@
 				\item  \textbf{Trail of Terror:\newline(Technologies Used: Python, Libraries: turtle)}\newline
                 Used Python to create a fun, interactive game with a simple GUI, enhancing game functionality with both the Singleton and Factory Creational design patterns. Implementing unique game features and ideas increased user engagement by 40\%, resulting in an average playtime of 30 minutes each session.
 				\item  \textbf{Heart attack prediction using Multi-Layer Perceptron model:\newline(Technologies Used: Python, Libraries: NumPy, Pandas, SciKit, Seaborn, Matplotlib, TensorFlow)}\newline Developed a robust multi layer perceptron model with 6 hidden layers to train the model utilizing a dataset downloaded from Kaggle, resulting in a 88\% accurate prediction on the test dataset. Implemented data preprocessing techniques such as normalization and feature scaling to improve training accuracy by 15\% and reduce overfitting of the model.
-				\item  \textbf{Online Aid For Detecting Brain Tumor And Tuberculosis Using Deep Learning:\newline(B.E. Capstone Project, Technologies Used: Python, HTML, CSS, JavaScript)}\newline Developed and implemented an innovative front-end layout for a web application that allowed doctors/users to upload X-ray and MRI data. Convolutional neural networks ResNet and MobileNetV2 were implemented with up to 99\% accuracy to detect brain tumours and tuberculosis from user's X-ray/MRI data, decreasing the requirement for intrusive testing procedures by over 50\%. The ResNet and MobileNetV2 models' metrics for performance, like precision, recall, and F1 score, improved by 5\% as a result of the team's collaboration to optimise the techniques utilized in the models.
+				\item  \textbf{Online Aid For Detecting Brain Tumor And Tuberculosis Using Deep Learning:\newline(B.E. Capstone Project, Technologies Used: Python, HTML, CSS, JavaScript)}\newline Developed and implemented an innovative front-end layout for a web application that allowed doctors/users to upload X-ray and MRI data. Convolutional neural networks ResNet and MobileNetV2 were implemented with up to 99\% accuracy to detect brain tumours and tuberculosis from user's X-ray/MRI data, decreasing the requirement for intrusive testing procedures by over 50\%. The ResNet and MobileNetV2 models' metrics for performance improved by 5\% as a result of the team's collaboration to optimise the techniques utilized in the models.
 			\end{itemize}
 		\end{cvsubsection}
-		\begin{cvsubsection}{Personal Projects}{}{}
-			\begin{itemize}
-				\item  \textbf{Mask detection using transfer learning:\newline (Technologies Used: Python, Libraries: OpenCV, NumPy, Pandas, Seaborn, Matplotlib, TensorFlow)} \newline Trained a deep learning model using a dataset of over 10,000 images to detect whether a person is wearing a mask in real-time with an accuracy rate of 95\% and recognize and determine whether a person is wearing a mask in real time using a webcam.
-                \item  \textbf{Fake news detection using Passive Aggressive Classifier:\newline(Technologies Used: Python, Libraries:NumPy, Pandas, SciKit, Seaborn, Matplotlib)} \newline Utilized scikit learn's CountVectorizer and Tfidf-Vectorizer libraries to extract relevant features from text data, resulting in a decrease in model training time by 40\% and using Passive Aggressive Classifier, the model is trained to distinguish fake and legitimate news from the provided training dataset, and predictions are produced on the test dataset with 93\% accuracy.
-			\end{itemize}
-		\end{cvsubsection}
+		% \begin{cvsubsection}{Personal Projects}{}{}
+		% 	\begin{itemize}
+		% 		\item  \textbf{Mask detection using transfer learning:\newline (Technologies Used: Python, Libraries: OpenCV, NumPy, Pandas, Seaborn, Matplotlib, TensorFlow)}\newline
+  %               Trained a deep learning model using a dataset of over 10,000 images to detect whether a person is wearing a mask in real-time with an accuracy rate of 95\% and recognize and determine whether a person is wearing a mask in real time using a webcam.
+  %               \item  \textbf{Fake news detection using Passive Aggressive Classifier:\newline(Technologies Used: Python, Libraries:NumPy, Pandas, SciKit, Seaborn, Matplotlib)} \newline
+  %               Utilized scikit learn's CountVectorizer and Tfidf-Vectorizer libraries to extract relevant features from text data, resulting in a decrease in model training time by 40\% and using Passive Aggressive Classifier, the model is trained to distinguish fake and legitimate news from the provided training dataset, and predictions are produced on the test dataset with 93\% accuracy.
+		% 	\end{itemize}
+		% \end{cvsubsection}
 	\end{cvsection}
 	
 	\begin{cvsection}{Courses and Additional Experience}
 		\begin{cvsubsection}{}{}{}	
 			\begin{itemize}
-				\item Completed multiple online courses in Power BI, IoT, Arduino programming and Python data structures certified by top universities such as UC Irvine and University of Michigan.
-				\item Certified on Kotlin basics through a comprehensive course on Udemy, gaining hands-on experience in developing Android apps using this programming language.
-				\item Demonstrated leadership skills as Volunteer Lead with Bhumi NGO, coordinating three special events for orphan kids and managing facilities to serve program needs while efficiently coordinating food and clothing donations for disadvantaged individuals.
+				\item Completed online courses in Power BI, IoT, Arduino programming and Python data structures certified by top universities such as UC Irvine and University of Michigan.
+				% \item Certified on Kotlin basics through a comprehensive course on Udemy, gaining hands-on experience in developing Android apps using this programming language.
+				\item Volunteer Lead with Bhumi NGO, coordinating three special events for orphan kids and managing facilities to serve program needs while efficiently coordinating food and clothing donations for disadvantaged individuals.
 			\end{itemize}
 		\end{cvsubsection}
 	\end{cvsection}
