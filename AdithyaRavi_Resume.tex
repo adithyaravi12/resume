@@ -19,111 +19,200 @@
 %% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 %% OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 %% SOFTWARE.
+\ProvidesClass{mcdowellcv}[2015/12/15 v1.1.0 McDowell CV class]
 
-% The font could be set to Windows-specific Calibri by using the 'calibri' option
-\documentclass[]{mcdowellcv}
+% Set up the fonts according to options
+\def\mainfontsize{10pt}
+\def\mainfontface{Times New Roman}
 
-% For mathematical symbols
-\usepackage{amsmath}
+\DeclareOption{calibri}{%
+  \def\mainfontface{Calibri}
+}
+
+\ProcessOptions\relax
+
+% Set font size and paper type
+\LoadClass[letterpaper,\mainfontsize]{article} 
+
+% Set document margins
+\usepackage[left=0.4in,top=0.4in,right=0.4in,bottom=0.3in]{geometry} 
+
+
+% Set font face
+\usepackage{fontspec}
+% \setmainfont[SmallCapsFeatures={Renderer=Basic},
+% Ligatures={TeX, NoCommon, NoDiscretionary}]{\mainfontface}
+\setmainfont[SmallCapsFeatures={Renderer=Basic},
+Ligatures={TeX, NoCommon, NoDiscretionary}, BoldItalicFont=CALIBRIZ.TTF,
+    BoldFont      =CALIBRIB.TTF,
+    ItalicFont    =CALIBRII.TTF]{CALIBRI.TTF}
+
+% Remove paragraph indentation
+\usepackage[parfill]{parskip} 
+
+% Required for boldface (\bf and \bfseries) tabular columns
+\usepackage{array} 
+
+% Required for ifthenelse statements
+\usepackage{etoolbox} 
+
+% Suppress page numbers
+\pagestyle{empty} 
+
+% Flexible tables
+\usepackage{tabu}
+
+% For custom margins
+\usepackage{changepage}
+
+% To customize lists
+\usepackage{enumitem}
 
 % hyperlinks
 \usepackage{hyperref}
 
 
-% Set applicant's personal data for header
-\name{Adithya Ravi}
-\address{102, Calhoun Street, Apt 221 \linebreak Clemson, SC 29631 \linebreak}
-\webpage[https://adithyaravi1203.wixsite.com/adithyaportfolio]{Portfolio}
-% \webpage{adithyaravi1203.wixsite.com/adithyaportfolio}
+% Remove left margin from lists, suppress vertical item separation and set top 
+% separation to a negative value to suppress a single parskip before lists
+\setlist{leftmargin=*, noitemsep, topsep=-1\parskip}
 
-\contacts{(864) 207-2541}{https://www.linkedin.com/in/adithyaravi12/}{adithyaravi0312@gmail.com}
-% \contacts{(864) 207-2541 \linebreak linkedin.com/in/adithyaravi12/ \linebreak adithya.ravi1203@gmail.com}
+% For spcaed small caps
+\usepackage{microtype}
 
-\github{https://github.com/adithyaravi12}
-% \github{github.com/adithyaravi12}
-
-\begin{document}
-
-	% Print the header
-	\makeheader
-	
-	% Print the content
+\DeclareMicrotypeSet*{smallcapsi} { 
+	encoding = {T1},
+	shape    = {sc*,si,scit}
+}
 
 
-\begin{cvsection}{Education}
-		\begin{cvsubsection}{Clemson University, Clemson, SC}{}{Jan 2022 -- Dec 2023 (Expected)}
-			\begin{itemize}
-				\item \textbf {Master of Science in Computer Science, GPA: 3.74}
-				\item {Graduate Coursework: Database Management System, Machine Learning: Implementation and Evaluation, Statistical Methods 1, Data Analysis, Software Design, Cloud Computing Architecture, Distributed Denial of Services, Applied Data Science, Computing and Online Relationships } 
-			\end{itemize}
-		\end{cvsubsection}
-		\begin{cvsubsection}{Anna University, Chennai, India}{}{Aug 2017 -- May 2021}
-			\begin{itemize}
-				\item \textbf{Bachelor of Engineering in Computer Science and Engineering, GPA: 8.08}
-			\end{itemize}
-		\end{cvsubsection}
-	\end{cvsection}
+%--------------------------------------------------------------------------------
+%                                    Constants                                  -
+%--------------------------------------------------------------------------------
+\def\afterheaderspace{1pt}
+\def\beforesectionheaderspace{1pt}
+\def\sectionheadermargin{6pt}
+\def\aftersectionheaderspace{-4pt}
+\def\sectionheaderhrlueheight{0.5pt}
+\def\aftersinglelinesubsectionheaderspace{-18.5pt}
+\def\afterdoublelinesubsectionheaderspace{-10pt}
+\def\aftermultilinesubsectionheaderspace{-6pt}
+\def\afteremptysubsectionheaderspace{3pt}
+\def\subsectionmargin{5pt}
+\def\aftersubsectionspace{4pt}
 
-	\begin{cvsection}{Experience}
-		\begin{cvsubsection}{Web Developer Intern, CFT Ventures Private Limited,~India}{}{Mar 2020 – Sep 2020}
-			%iChat AV			
-			\begin{itemize}
-            \item Developed front-end web applications using WordPress, utilizing HTML, CSS, and JavaScript to create responsive and visually appealing web pages.
-            \item Created and maintained technical documents for content marketing services using the OptinMonster plugin, which included documenting technical procedures, standards, and guidelines to ensure consistency and quality of the content.
-		\item Designed and implemented web components using existing ASTRA      designs templates, working closely with the design team to ensure       that the final product meets the required specifications.
-            \item Worked with a team of 4 interns and used the AdvancedCSSEditor plugin to improve readability of the website, making it easier for users to navigate and find information.
-            \item Maintained a document that guides the website's architecture, detailing the various components of the website and their interactions. This documentation reduced the complexities of the website by 20\%, making it easier to maintain and update.
-			\end{itemize}
-		\end{cvsubsection}
-		
-		%\begin{cvsubsection}{Student~Trainee,~Barola~Technologies,~India}{}{Dec 2019}	
-            \begin{cvsubsection}{Student~Trainee,~Barola~Technologies,~India}{}{Dec 2019}
-			\begin{itemize}
-            	\item Developed and executed programs in Objected C, resulting in improved functionality of current systems by 20\%.
-				\item Analyzed code on Arduino Uno board to identify areas for improvement, leading to a 15\% decrease in system errors.
-			\end{itemize}
-		\end{cvsubsection}
+%--------------------------------------------------------------------------------
+%                            Header Setup and Printing                          -
+%--------------------------------------------------------------------------------
 
-	\end{cvsection}
+% Address
+\makeatletter
 
-\begin{cvsection}{Languages and Technologies}
-		\begin{cvsubsection}{}{}{}	
-			\begin{itemize}
-				\item Python, C++, C, HTML, CSS, JavaScript, SQL, Java
-				\item NumPy, Pandas, Keras, Tensorflow, Matplotlib, Seaborn, SciKit, Power BI, Bash, Git, Linux, VSCode
-			\end{itemize}
-		\end{cvsubsection}
-	\end{cvsection}
-	
-	\begin{cvsection}{Technical Experience}
-		\begin{cvsubsection}{Academic Projects}{}{}
-			\begin{itemize}
-				\item \textbf{Rating predictions from reviews given to products in online markets:\newline(Technologies Used: Python, Libraries: NumPy, Pandas, SciKit, Seaborn, Matplotlib, TensorFlow, NLTK, TQDM, OpenAI API)}\newline Created four models to categorise reviews on popular e-commerce websites according to whether they are seller-related, marketplace-related, shipment-related, or product-related and then predict their rating. A CNN, RNN/LSTM, BERT, and SVM with and without splitting were among the models. With a 40.99\% overall accuracy and accuracy rates of 34.12\% for product-related reviews, 41.77\% for delivery-related reviews, 44.70\% for seller-related reviews, and 43.36\% for marketplace-related reviews, the SVM model without splitting had the highest accuracy. 
-				\item  \textbf{Trail of Terror:\newline(Technologies Used: Python, Libraries: turtle)}\newline
-                Used Python to create a fun, interactive game with a simple GUI, enhancing game functionality with both the Singleton and Factory Creational design patterns. Implementing unique game features and ideas increased user engagement by 40\%, resulting in an average playtime of 30 minutes each session.
-				\item  \textbf{Heart attack prediction using Multi-Layer Perceptron model:\newline(Technologies Used: Python, Libraries: NumPy, Pandas, SciKit, Seaborn, Matplotlib, TensorFlow)}\newline Developed a robust multi layer perceptron model with 6 hidden layers to train the model utilizing a dataset downloaded from Kaggle, resulting in a 88\% accurate prediction on the test dataset. Implemented data preprocessing techniques such as normalization and feature scaling to improve training accuracy by 15\% and reduce overfitting of the model.
-				\item  \textbf{Online Aid For Detecting Brain Tumor And Tuberculosis Using Deep Learning:\newline(B.E. Capstone Project, Technologies Used: Python, HTML, CSS, JavaScript)}\newline Developed and implemented an innovative front-end layout for a web application that allowed doctors/users to upload X-ray and MRI data. Convolutional neural networks ResNet and MobileNetV2 were implemented with up to 99\% accuracy to detect brain tumours and tuberculosis from user's X-ray/MRI data, decreasing the requirement for intrusive testing procedures by over 50\%. The ResNet and MobileNetV2 models' metrics for performance improved by 5\% as a result of the team's collaboration to optimise the techniques utilized in the models.
-			\end{itemize}
-		\end{cvsubsection}
-		% \begin{cvsubsection}{Personal Projects}{}{}
-		% 	\begin{itemize}
-		% 		\item  \textbf{Mask detection using transfer learning:\newline (Technologies Used: Python, Libraries: OpenCV, NumPy, Pandas, Seaborn, Matplotlib, TensorFlow)}\newline
-  %               Trained a deep learning model using a dataset of over 10,000 images to detect whether a person is wearing a mask in real-time with an accuracy rate of 95\% and recognize and determine whether a person is wearing a mask in real time using a webcam.
-  %               \item  \textbf{Fake news detection using Passive Aggressive Classifier:\newline(Technologies Used: Python, Libraries:NumPy, Pandas, SciKit, Seaborn, Matplotlib)} \newline
-  %               Utilized scikit learn's CountVectorizer and Tfidf-Vectorizer libraries to extract relevant features from text data, resulting in a decrease in model training time by 40\% and using Passive Aggressive Classifier, the model is trained to distinguish fake and legitimate news from the provided training dataset, and predictions are produced on the test dataset with 93\% accuracy.
-		% 	\end{itemize}
-		% \end{cvsubsection}
-	\end{cvsection}
-	
-	\begin{cvsection}{Courses and Additional Experience}
-		\begin{cvsubsection}{}{}{}	
-			\begin{itemize}
-				\item Completed online courses in Power BI, IoT, Arduino programming and Python data structures certified by top universities such as UC Irvine and University of Michigan.
-				% \item Certified on Kotlin basics through a comprehensive course on Udemy, gaining hands-on experience in developing Android apps using this programming language.
-				\item Volunteer Lead with Bhumi NGO, coordinating three special events for orphan kids and managing facilities to serve program needs while efficiently coordinating food and clothing donations for disadvantaged individuals.
-			\end{itemize}
-		\end{cvsubsection}
-	\end{cvsection}
-	
-	
-\end{document}
+\newcommand\address[1]{\def\@address{#1}}
+\address{}
+
+\newcommand\printaddress{
+	\small{\@address}
+}
+% Webpage
+\makeatletter
+\newcommand\webpage[2][]{\def\@webpage{#2}\def\@webpageurl{#1}}
+\address{}
+
+\newcommand\printwebpage{\small{\href{\@webpageurl}{\@webpage}}}
+\makeatother
+
+% Name
+\makeatletter
+
+\newcommand\name[1]{\def\@name{#1}}
+\name{}
+
+\newcommand\printname{
+	\textbf{\LARGE{\textsc{\@name}}}
+}
+
+\makeatother
+
+% Contacts
+\makeatletter
+\newcommand\contacts[3]{\def\@phone{#1}\def\@linkedin{#2}\def\@email{#3}}
+\contacts{}{}{}
+
+\newcommand\printcontacts{
+	\small{\href{tel:\@phone}{\@phone} \linebreak \href{\@linkedin}{LinkedIn Profile} \linebreak \href{mailto:\@email}{\nolinkurl{\@email}}}
+}
+\makeatother
+
+% GitHub
+\makeatletter
+\newcommand\github[1]{\def\@github{#1}}
+\github{}
+
+\newcommand\printgithub{
+	\small{\href{\@github}{GitHub Profile}}
+}
+\makeatother
+
+\makeatletter
+\newcommand\makeheader{
+	\begin{center}
+		\begin{tabu} to 1\textwidth { X[l,m] X[2,c,m] X[r,m] }
+			\printaddress \printwebpage & \printname & \printcontacts \printgithub \\
+		\end{tabu}	
+	\end{center}
+	\vspace*{\afterheaderspace}
+}
+\makeatother
+
+%--------------------------------------------------------------------------------
+%                            Sections and Subsections                           -
+%--------------------------------------------------------------------------------
+
+% Print a section header
+\makeatletter
+\newenvironment{cvsection}[1]{
+	\vspace*{\beforesectionheaderspace}
+	% Set text margins to equal \tabcolsep (6pt by default)
+	\begin{adjustwidth}{\sectionheadermargin}{\sectionheadermargin}
+		\textsc{\textbf{#1}}
+	\end{adjustwidth}
+	\smallskip
+	\hrule height \sectionheaderhrlueheight
+	\vspace*{\aftersectionheaderspace}
+}{}
+\makeatother
+
+% Print a subsection
+\makeatletter
+% Define toggles checking if titles were defined
+\newtoggle{lefttitledefined}
+\newtoggle{centertitledefined}
+\newtoggle{righttitledefined}
+
+\newenvironment{cvsubsection}[4][1]{
+	\notblank{#2}{\toggletrue{lefttitledefined}}{}
+	\notblank{#3}{\toggletrue{centertitledefined}}{}
+	\notblank{#4}{\toggletrue{righttitledefined}}{}
+	\ifboolexpr{togl {lefttitledefined} or togl {centertitledefined} or togl {righttitledefined}}{
+		\begin{tabu} to 1\textwidth { X[2,l,p] X[c,p] X[r,p] }
+			\textbf{#2} & \textbf{#3} & \textbf{#4} \\
+		\end{tabu}
+		% Add space according to the specidied number of lines
+		\ifnumcomp{#1}{=}{1}{\vspace*{\aftersinglelinesubsectionheaderspace}}{
+			\ifnumcomp{#1}{=}{2}{\vspace*{\afterdoublelinesubsectionheaderspace}}{
+				\vspace*{\aftermultilinesubsectionheaderspace}
+			}
+		}
+	}{
+		\vspace*{\afteremptysubsectionheaderspace}
+	}
+	\togglefalse{lefttitledefined}
+	\togglefalse{centertitledefined}
+	\togglefalse{righttitledefined}
+	\begin{adjustwidth}{\subsectionmargin}{\subsectionmargin}
+}
+{
+	\end{adjustwidth}
+	\vspace*{\aftersubsectionspace}
+}
+\makeatother
